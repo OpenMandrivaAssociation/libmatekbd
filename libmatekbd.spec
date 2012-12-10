@@ -70,3 +70,14 @@ NOCONFIGURE=yes ./autogen.sh
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.so
 
+
+
+%changelog
+* Thu Aug 02 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.4.0-1
++ Revision: 811555
+- new version 1.4.0
+
+* Thu May 31 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.0-1
++ Revision: 801661
+- imported package libmatekbd
+
