@@ -1,22 +1,22 @@
+%define url_ver %(echo %{version}|cut -d. -f1,2)
+
 %define major	4
 %define libname	%mklibname matekbd  %{major}
 %define devname %mklibname -d matekbd
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.4.0
+Version:	1.8.0
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
+Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	intltool
 BuildRequires:	mate-common
-BuildRequires:	mate-conf
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(mateconf-2.0)
 BuildRequires:	pkgconfig(libxklavier)
 
 %description
@@ -42,24 +42,25 @@ applications using the MATE keyboard library
 %prep
 %setup -q
 %apply_patches
+NOCONFIGURE=yes ./autogen.sh
 
 %build
-NOCONFIGURE=yes ./autogen.sh
 %configure2_5x \
 	--disable-static
 
-%make LIBS='-lm -lgmodule-2.0'
+%make
 
 %install
 %makeinstall_std
+
+# remove unneeded converters
+rm -fr %{buildroot}%{_datadir}/MateConf
 
 %find_lang %{name}
 
 %files -f %{name}.lang
 %doc NEWS ChangeLog
-%{_sysconfdir}/mateconf/schemas/desktop_mate_peripherals_keyboard_xkb.schemas
-%{_bindir}/matekbd-indicator-plugins-capplet
-%{_datadir}/applications/matekbd-indicator-plugins-capplet.desktop
+%{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
 %{_datadir}/libmatekbd/
 
 %files -n %{libname}
@@ -69,15 +70,4 @@ NOCONFIGURE=yes ./autogen.sh
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.so
-
-
-
-%changelog
-* Thu Aug 02 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.4.0-1
-+ Revision: 811555
-- new version 1.4.0
-
-* Thu May 31 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.0-1
-+ Revision: 801661
-- imported package libmatekbd
 
