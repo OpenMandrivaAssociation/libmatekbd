@@ -13,7 +13,6 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
-
 BuildRequires:	intltool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(glib-2.0)
