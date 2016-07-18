@@ -7,8 +7,8 @@
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.8.0
-Release:	2
+Version:	1.14.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://mate-desktop.org
@@ -66,7 +66,9 @@ NOCONFIGURE=yes ./autogen.sh
 
 %build
 %configure2_5x \
-	--disable-static
+	--disable-static \
+	--with-gtk=3.0 \
+	--disable-introspection
 
 %make
 
