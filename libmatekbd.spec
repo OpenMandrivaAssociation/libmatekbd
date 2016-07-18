@@ -4,6 +4,7 @@
 %define libname	%mklibname matekbd  %{major}
 %define libui	%mklibname matekbdui  %{major}
 %define devname %mklibname -d matekbd
+%define _disable_rebuild_configure 1
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
@@ -62,7 +63,6 @@ applications using the MATE keyboard library
 %prep
 %setup -q
 %apply_patches
-NOCONFIGURE=yes ./autogen.sh
 
 %build
 %configure2_5x \
