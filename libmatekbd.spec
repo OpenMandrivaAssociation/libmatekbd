@@ -8,16 +8,18 @@
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.14.0
+Version:	1.18.2
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+Url:		https://mate-desktop.org
+Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	intltool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(libxklavier)
 
 %description
@@ -65,25 +67,23 @@ applications using the MATE keyboard library
 %apply_patches
 
 %build
-%configure2_5x \
-	--disable-static \
-	--with-gtk=3.0 \
-	--disable-introspection
-
+#NOCONFIGURE=1 ./autogen.sh
+%configure \
+	--enable-introspection=yes \
+	%{nil}
 %make
 
 %install
 %makeinstall_std
 
-# remove unneeded converters
-rm -fr %{buildroot}%{_datadir}/MateConf
-
-%find_lang %{name}
+# locales
+%find_lang %{name} --with-gnome --all-name
 
 %files data -f %{name}.lang
 %doc NEWS ChangeLog
 %{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
-%{_datadir}/libmatekbd/
+%dir %{_datadir}/libmatekbd/
+%{_datadir}/libmatekbd/*
 
 %files -n %{libname}
 %{_libdir}/libmatekbd.so.%{major}*
