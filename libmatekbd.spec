@@ -84,6 +84,8 @@ applications using the MATE keyboard library
 %{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
 %dir %{_datadir}/libmatekbd/
 %{_datadir}/libmatekbd/*
+%{_datadir}/gir-1.0/Matekbd-1.0.gir
+%{_libdir}/girepository-1.0/Matekbd-1.0.typelib
 
 %files -n %{libname}
 %{_libdir}/libmatekbd.so.%{major}*
