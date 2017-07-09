@@ -60,7 +60,7 @@ Group:		%{group}
 Requires:	%{name}-data >= %{version}-%{release}
 
 %description -n %{libname}
-This package contains is part of MATE keyboard library.
+This package is part of MATE keyboard library.
 
 %files -n %{libname}
 %{_libdir}/libmatekbd.so.%{major}*
@@ -74,7 +74,7 @@ Requires:	%{name}-data >= %{version}-%{release}
 Conflicts:	%{_lib}matekbd4 < 1.8.0-1
 
 %description -n %{libui}
-This package contains is part of MATE keyboard library
+This package is part of MATE keyboard library
 
 %files -n %{libui}
 %{_libdir}/libmatekbdui.so.%{major}*
