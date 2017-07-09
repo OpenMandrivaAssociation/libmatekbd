@@ -14,6 +14,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://mate-desktop.org
 Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+
 BuildRequires:	intltool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(glib-2.0)
@@ -25,6 +26,8 @@ BuildRequires:	pkgconfig(libxklavier)
 %description
 Files used by MATE keyboard library
 
+#---------------------------------------------------------------------------
+
 %package data
 Summary:	Data files and translations for %{name}
 Group:		%{group}
@@ -34,6 +37,16 @@ BuildArch:	noarch
 %description data
 This package contains the data files and translation for %{name}.
 
+%files data -f %{name}.lang
+%doc NEWS ChangeLog
+%{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
+%dir %{_datadir}/libmatekbd/
+%{_datadir}/libmatekbd/*
+%{_datadir}/gir-1.0/Matekbd-1.0.gir
+%{_libdir}/girepository-1.0/Matekbd-1.0.typelib
+
+#---------------------------------------------------------------------------
+
 %package -n %{libname}
 Summary:	Dynamic libraries for MATE applications
 Group:		%{group}
@@ -41,6 +54,11 @@ Requires:	%{name}-data >= %{version}-%{release}
 
 %description -n %{libname}
 MATE keyboard library
+
+%files -n %{libname}
+%{_libdir}/libmatekbd.so.%{major}*
+
+#---------------------------------------------------------------------------
 
 %package -n %{libui}
 Summary:	Dynamic libraries for MATE applications
@@ -50,6 +68,11 @@ Conflicts:	%{_lib}matekbd4 < 1.8.0-1
 
 %description -n %{libui}
 MATE keyboard library
+
+%files -n %{libui}
+%{_libdir}/libmatekbdui.so.%{major}*
+
+#---------------------------------------------------------------------------
 
 %package -n %{devname}
 Summary:	Development libraries, include files for MATE
@@ -61,6 +84,13 @@ Provides:	%{name}-devel = %{version}-%{release}
 %description -n %{devname}
 Development library and headers file needed in order to develop
 applications using the MATE keyboard library
+
+%files -n %{devname}
+%{_includedir}/*
+%{_libdir}/pkgconfig/*
+%{_libdir}/*.so
+
+#---------------------------------------------------------------------------
 
 %prep
 %setup -q
@@ -78,23 +108,4 @@ applications using the MATE keyboard library
 
 # locales
 %find_lang %{name} --with-gnome --all-name
-
-%files data -f %{name}.lang
-%doc NEWS ChangeLog
-%{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
-%dir %{_datadir}/libmatekbd/
-%{_datadir}/libmatekbd/*
-%{_datadir}/gir-1.0/Matekbd-1.0.gir
-%{_libdir}/girepository-1.0/Matekbd-1.0.typelib
-
-%files -n %{libname}
-%{_libdir}/libmatekbd.so.%{major}*
-
-%files -n %{libui}
-%{_libdir}/libmatekbdui.so.%{major}*
-
-%files -n %{devname}
-%{_includedir}/*
-%{_libdir}/pkgconfig/*
-%{_libdir}/*.so
 
