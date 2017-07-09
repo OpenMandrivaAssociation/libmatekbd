@@ -1,10 +1,14 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
+%define _disable_rebuild_configure 1
+
 %define major	4
 %define libname	%mklibname matekbd  %{major}
 %define libui	%mklibname matekbdui  %{major}
 %define devname %mklibname -d matekbd
-%define _disable_rebuild_configure 1
+
+%define	gimajor	1.0
+%define	girname	%mklibname matekbd-gir %{gimajor}
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
@@ -17,6 +21,7 @@ Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar
 
 BuildRequires:	intltool
 BuildRequires:	mate-common
+BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
@@ -45,12 +50,10 @@ BuildArch:	noarch
 This package contains the data files and translation for %{name}.
 
 %files data -f %{name}.lang
-%doc NEWS ChangeLog
+%doc NEWS ChangeLog README COPYING
 %{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
 %dir %{_datadir}/libmatekbd/
 %{_datadir}/libmatekbd/*
-%{_datadir}/gir-1.0/Matekbd-1.0.gir
-%{_libdir}/girepository-1.0/Matekbd-1.0.typelib
 
 #---------------------------------------------------------------------------
 
@@ -81,6 +84,19 @@ This package is part of MATE keyboard library
 
 #---------------------------------------------------------------------------
 
+%package -n %{girname}
+Summary:	GObject Introspection interface library for %{name}
+Group:		System/Libraries
+Requires:	%{libname} = %{version}-%{release}
+
+%description -n %{girname}
+This package contains GObject Introspection interface library for %{name}.
+
+%files -n %{girname}
+%{_libdir}/girepository-1.0/Matekbd-%{gimajor}.typelib
+
+#---------------------------------------------------------------------------
+
 %package -n %{devname}
 Summary:	Development libraries, include files for MATE
 Group:		Development/C
@@ -96,6 +112,7 @@ based on the MATE keyboard library.
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.so
+%{_datadir}/gir-1.0/Matekbd-%{gmajor}.gir
 
 #---------------------------------------------------------------------------
 
@@ -106,7 +123,7 @@ based on the MATE keyboard library.
 %build
 #NOCONFIGURE=1 ./autogen.sh
 %configure \
-	--enable-introspection=yes \
+	--enable-introspection \
 	--disable-schemas-compile \
 	%{nil}
 %make
