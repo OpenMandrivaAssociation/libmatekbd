@@ -24,7 +24,14 @@ BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(libxklavier)
 
 %description
-Files used by MATE keyboard library
+The MATE Desktop Environment is the continuation of GNOME 2. It provides an
+intuitive and attractive desktop environment using traditional metaphors for
+Linux and other Unix-like operating systems.
+
+MATE is under active development to add support for new technologies while
+preserving a traditional desktop experience.
+
+This package provides files used by MATE keyboard library.
 
 #---------------------------------------------------------------------------
 
@@ -53,7 +60,7 @@ Group:		%{group}
 Requires:	%{name}-data >= %{version}-%{release}
 
 %description -n %{libname}
-MATE keyboard library
+This package contains is part of MATE keyboard library.
 
 %files -n %{libname}
 %{_libdir}/libmatekbd.so.%{major}*
@@ -67,7 +74,7 @@ Requires:	%{name}-data >= %{version}-%{release}
 Conflicts:	%{_lib}matekbd4 < 1.8.0-1
 
 %description -n %{libui}
-MATE keyboard library
+This package contains is part of MATE keyboard library
 
 %files -n %{libui}
 %{_libdir}/libmatekbdui.so.%{major}*
@@ -82,8 +89,8 @@ Requires:	%{libui} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
-Development library and headers file needed in order to develop
-applications using the MATE keyboard library
+This package contains libraries and includes files for developing programs
+based on the MATE keyboard library.
 
 %files -n %{devname}
 %{_includedir}/*
