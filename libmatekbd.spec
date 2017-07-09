@@ -100,6 +100,7 @@ applications using the MATE keyboard library
 #NOCONFIGURE=1 ./autogen.sh
 %configure \
 	--enable-introspection=yes \
+	--disable-schemas-compile \
 	%{nil}
 %make
 
