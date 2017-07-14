@@ -112,7 +112,7 @@ based on the MATE keyboard library.
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.so
-%{_datadir}/gir-1.0/Matekbd-%{gmajor}.gir
+%{_datadir}/gir-1.0/Matekbd-%{gimajor}.gir
 
 #---------------------------------------------------------------------------
 
