@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   libmatekbd-1.14.0.tar.xz: 36b107cd9a9cc6f44c2843abba0a6e65839b9d09
+sources:
+  libmatekbd-1.18.2.tar.xz: d93407d73821f8b7aaa0a718308fd4a4dc8f7029
