@@ -12,8 +12,8 @@
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.18.2
-Release:	2
+Version:	1.20.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://mate-desktop.org
