@@ -12,7 +12,7 @@
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.20.0
+Version:	1.20.2
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
@@ -126,10 +126,10 @@ based on the MATE keyboard library.
 	--enable-introspection \
 	--disable-schemas-compile \
 	%{nil}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # locales
 %find_lang %{name} --with-gnome --all-name
