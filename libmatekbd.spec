@@ -118,7 +118,6 @@ based on the MATE keyboard library.
 
 %prep
 %setup -q
-%apply_patches
 
 %build
 #NOCONFIGURE=1 ./autogen.sh
