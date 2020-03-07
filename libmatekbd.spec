@@ -55,7 +55,7 @@ This package contains the data files and translation for %{name}.
 %doc NEWS ChangeLog README COPYING
 %{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
 %dir %{_datadir}/libmatekbd/
-%{_datadir}/libmatekbd/*
+#{_datadir}/libmatekbd/*
 
 #---------------------------------------------------------------------------
 
