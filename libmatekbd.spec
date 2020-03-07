@@ -20,6 +20,7 @@ Url:		https://mate-desktop.org
 Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	autoconf-archive
+BuildRequires:	libxml2-utils
 BuildRequires:	intltool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(gio-2.0)
