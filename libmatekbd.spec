@@ -12,13 +12,15 @@
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.22.0
-Release:	2
+Version:	1.24.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://mate-desktop.org
 Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:	autoconf-archive
+BuildRequires:	libxml2-utils
 BuildRequires:	intltool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(gio-2.0)
@@ -52,8 +54,6 @@ This package contains the data files and translation for %{name}.
 %files data -f %{name}.lang
 %doc NEWS ChangeLog README COPYING
 %{_datadir}/glib-2.0/schemas/org.mate.peripherals-keyboard-xkb.gschema.xml
-%dir %{_datadir}/libmatekbd/
-%{_datadir}/libmatekbd/*
 
 #---------------------------------------------------------------------------
 
