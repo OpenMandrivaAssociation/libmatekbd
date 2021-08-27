@@ -12,7 +12,7 @@
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.24.1
+Version:	1.26.0
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
