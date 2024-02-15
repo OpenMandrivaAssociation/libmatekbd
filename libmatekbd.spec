@@ -1,23 +1,23 @@
-%define url_ver %(echo %{version}|cut -d. -f1,2)
+%define mate_ver	%(echo %{version}|cut -d. -f1,2)
 
-%define _disable_rebuild_configure 1
-
-%define major	4
-%define libname	%mklibname matekbd  %{major}
-%define libui	%mklibname matekbdui  %{major}
-%define devname %mklibname -d matekbd
+%define major	6
+%define libname	%mklibname matekbd
+%define libui	%mklibname matekbdui
+%define devname	%mklibname matekbd -d
+%define oldlibname	%mklibname matekbd 3
+%define oldlibui	%mklibname matekbdui 4
 
 %define	gimajor	1.0
 %define	girname	%mklibname matekbd-gir %{gimajor}
 
 Summary:	MATE keyboard libraries
 Name:		libmatekbd
-Version:	1.26.1
+Version:	1.28.0
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://mate-desktop.org
-Source0:	https://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+Source0:	https://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	autoconf-archive
 BuildRequires:	libxml2-utils
@@ -61,6 +61,7 @@ This package contains the data files and translation for %{name}.
 Summary:	Dynamic libraries for MATE applications
 Group:		%{group}
 Requires:	%{name}-data >= %{version}-%{release}
+Obsoletes:	%{oldlibname} < %{EVRD}
 
 %description -n %{libname}
 This package is part of MATE keyboard library.
@@ -75,6 +76,7 @@ Summary:	Dynamic libraries for MATE applications
 Group:		%{group}
 Requires:	%{name}-data >= %{version}-%{release}
 Conflicts:	%{_lib}matekbd4 < 1.8.0-1
+Obsoletes:	%{oldlibui} < %{EVRD}
 
 %description -n %{libui}
 This package is part of MATE keyboard library
